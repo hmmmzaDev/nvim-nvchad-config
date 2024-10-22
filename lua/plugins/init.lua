@@ -46,7 +46,7 @@ return {
   { import = "plugins.spec.screenkey" },
   { import = "plugins.spec.scrolleof" },
   { import = "plugins.spec.statuscol" },
-  { import = "plugins.spec.supermaven" },
+  --  { import = "plugins.spec.supermaven" },
   { import = "plugins.spec.tiny-code-action" },
   { import = "plugins.spec.tiny-inline-diagnostic" },
   { import = "plugins.spec.todo-comments" },
@@ -73,4 +73,5 @@ return {
   { import = "plugins.override.telescope" },
   { import = "plugins.override.ui" },
   { import = "plugins.override.whichkey" },
+  { import = "plugins.spec.codeium" },
 }

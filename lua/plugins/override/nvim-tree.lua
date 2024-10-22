@@ -1,9 +1,11 @@
 ---@type NvPluginSpec
 return {
   "nvim-tree/nvim-tree.lua",
-  enabled = false,
+  enabled = true,
   init = function()
-    vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
+    -- vim.keymap.set("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle NvimTree" })
+
+    vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
   end,
   config = function()
     dofile(vim.g.base46_cache .. "nvimtree")
@@ -167,11 +169,11 @@ return {
           return math.floor(vim.opt.columns:get() * SIZES.WIDTH)
         end,
       },
-      filesystem_watchers = {
+      --[[ filesystem_watchers = {
         ignore_dirs = {
           "node_modules",
         },
-      },
+      }, ]]
     }
   end,
 }
