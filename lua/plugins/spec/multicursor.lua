@@ -1,6 +1,7 @@
 return {
   "jake-stewart/multicursor.nvim",
-  enabled = false,
+  enabled = true,
+  event = "BufEnter",
   branch = "1.0",
   config = function(_, opts)
     local mc = require "multicursor-nvim"
@@ -16,46 +17,37 @@ return {
       mc.lineAddCursor(1)
     end, { desc = "Multicursor add cursor below main cursor." })
 
-    map({ "n", "v" }, "<leader><up>", function()
+    map({ "n", "v" }, "<leader>mc<up>", function()
       mc.lineSkipCursor(-1)
     end, { desc = "Multicursor skip cursor above main cursor." })
 
-    map({ "n", "v" }, "<leader><down>", function()
+    map({ "n", "v" }, "<leader>mc<down>", function()
       mc.lineSkipCursor(1)
     end, { desc = "Multicursor skip cursor below main cursor." })
 
-    map({ "n", "v" }, "<leader>n", function()
+    map({ "n", "v" }, "<leader>mcn", function()
       mc.matchAddCursor(1)
     end, { desc = "Multicursor add cursor below main cursor by matching word/selection." })
 
-    map({ "n", "v" }, "<leader>s", function()
+    map({ "n", "v" }, "<leader>mcs", function()
       mc.matchSkipCursor(1)
     end, { desc = "Multicursor skip cursor below main cursor by matching word/selection." })
 
-    map({ "n", "v" }, "<leader>N", function()
+    map({ "n", "v" }, "<leader>mcN", function()
       mc.matchAddCursor(-1)
     end, { desc = "Multicursor add cursor above main cursor by matching word/selection." })
 
-    map({ "n", "v" }, "<leader>S", function()
+    map({ "n", "v" }, "<leader>mcS", function()
       mc.matchSkipCursor(-1)
     end, { desc = "Multicursor skip cursor above main cursor by matching word/selection." })
 
-    -- You can also add cursors with any motion you prefer:
-    -- set("n", "<right>", function()
-    --     mc.addCursor("w")
-    -- end)
-    -- set("n", "<leader><right>", function()
-    --     mc.skipCursor("w")
-    -- end)
-
-    map({ "n", "v" }, "<leader>A", mc.matchAllAddCursors, { desc = "Multicursor add all matches in document." })
+    map({ "n", "v" }, "<leader>mcA", mc.matchAllAddCursors, { desc = "Multicursor add all matches in document." })
     map({ "n", "v" }, "<left>", mc.nextCursor, { desc = "Multicursor rotate the main cursor to the left." })
     map({ "n", "v" }, "<right>", mc.prevCursor, { desc = "Multicursor rotate the main cursor to the right." })
-    map({ "n", "v" }, "<leader>x", mc.deleteCursor, { desc = "Multicursor delete main cursor." })
+    map({ "n", "v" }, "<leader>mcx", mc.deleteCursor, { desc = "Multicursor delete main cursor." })
     map("n", "<c-leftmouse>", mc.handleMouse, { desc = "Multicursor add/remove cursors with mouse." })
-    -- Easy way to add and remove cursors using the main cursor.
     map({ "n", "v" }, "<c-q>", mc.toggleCursor, { desc = "Multicursor toggle cursors." })
-    map({ "n", "v" }, "<leader><c-q>", mc.duplicateCursors, { desc = "Multicursor duplicate cursors." })
+    map({ "n", "v" }, "<leader>mc<c-q>", mc.duplicateCursors, { desc = "Multicursor duplicate cursors." })
 
     map("n", "<esc>", function()
       if not mc.cursorsEnabled() then
@@ -67,17 +59,17 @@ return {
       end
     end)
 
-    map("v", "<leader>a", mc.alignCursors, { desc = "Multicursor align cursor columns." })
+    map("v", "<leader>mca", mc.alignCursors, { desc = "Multicursor align cursor columns." })
     map("v", "S", mc.splitCursors, { desc = "Multicursor split visual selections by regex." })
     map("v", "I", mc.insertVisual, { desc = "Multicursor insert for each line of visual selections." })
     map("v", "A", mc.appendVisual, { desc = "Multicursor append for each line of visual selections." })
     map("v", "M", mc.matchCursors, { desc = "Multicursor match new cursors within visual selections by regex." })
 
-    map("v", "<leader>t", function()
+    map("v", "<leader>mct", function()
       mc.transposeCursors(1)
     end, { desc = "Multicursor rotate visual selection contents to the right." })
 
-    map("v", "<leader>T", function()
+    map("v", "<leader>mcT", function()
       mc.transposeCursors(-1)
     end, { desc = "Multicursor rotate visual selection contents to the left." })
 
